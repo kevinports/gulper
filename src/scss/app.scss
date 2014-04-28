@@ -1,0 +1,22 @@
+body {
+	-webkit-font-smoothing: antialiased;
+	color: white;
+	font-family: sans-serif; 
+}
+
+.container {
+  transition: top 0.8s, opacity 0.6s;
+  transition-timing-function: ease-out;
+  width: 600px;
+  margin: 0 auto;
+  padding: 40px 60px;
+  position: relative;
+  top: 130px;
+  opacity: 0;
+  background: linear-gradient(to left, red, orange, yellow, green, blue, indigo, violet);
+}
+
+.loaded .container {
+  top: 100px;
+  opacity: 1;
+}

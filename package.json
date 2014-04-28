@@ -1,0 +1,41 @@
+{
+  "name": "gulp-starter",
+  "version": "0.1.0",
+  "description": "Gulp starter with common tasks and scenarios",
+  "browser": {
+    "plugin": "./src/js/vendor/jquery-plugin.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim",
+      "hbsfy"
+    ]
+  },
+  "browserify-shim": {
+    "plugin": {
+      "exports": "plugin",
+      "depends": [
+        "jquery:$"
+      ]
+    }
+  },
+  "devDependencies": {
+    "browserify-shim": "~3.4.1",
+    "browserify": "~3.36.0",
+    "connect": "~2.14.3",
+    "gulp-changed": "~0.3.0",
+    "gulp-sass": "~0.7.1",
+    "gulp-autoprefixer": "0.0.7",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-livereload": "~1.2.0",
+    "gulp-notify": "~1.2.4",
+    "gulp-open": "~0.2.8",
+    "gulp": "~3.6.0",
+    "hbsfy": "~1.3.2",
+    "vinyl-source-stream": "~0.1.1"
+  },
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "jquery": "~2.1.0"
+  }
+}
