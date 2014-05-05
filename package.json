@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Gulp starter with common tasks and scenarios",
   "browser": {
-    "plugin": "./src/js/vendor/jquery-plugin.js"
+    "gsap": "./src/js/vendor/tweenmax.js"
   },
   "browserify": {
     "transform": [
@@ -12,12 +12,7 @@
     ]
   },
   "browserify-shim": {
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
-    }
+    "gsap": "global:TweenMax"
   },
   "devDependencies": {
     "browserify-shim": "~3.4.1",

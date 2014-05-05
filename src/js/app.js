@@ -1,8 +1,18 @@
-var View = require('./views/view');
+_ = require('underscore');
+Backbone = require('backbone');
+Backbone.$ = require('jquery');
+Backbone.StateManager = require('./vendor/backbone.statemanager');
 
-$(function(){
-  var view = new View({el: 'body'});
-  setTimeout(function(){
-    $('body').addClass('loaded');
-  }, 100);
+var manager = require('./manager');
+
+window.app = {
+  init: function(){
+    this.instance = new manager();
+    Backbone.history.start();
+  }
+}
+
+Backbone.$(function(){
+  window.app.init();
+
 });
