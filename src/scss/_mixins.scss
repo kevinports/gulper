@@ -1,0 +1,105 @@
+// ----------------------------
+// Set a rem font size with pixel fallback
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+@mixin line-height($size) {
+  line-height: $size;
+  line-height: calculateRem($size);
+}
+// Usage:
+// p {
+//   @include font-size(14px)
+//   @include line-height(24px)
+// }
+
+// ----------------------------
+// Media Queries
+@mixin respond-to($breakpoint) {
+    @media only screen and (max-width: $breakpoint + px) { @content; }
+}
+@mixin respond-min($breakpoint) {
+    @media only screen and (min-width: $breakpoint + px) { @content; }
+}
+@mixin respond-touch() {
+    // should be min-device and max-device in production 
+    @media only screen and (min-device-width : 320px) and (max-device-width : 1024px) {
+      @content;
+    }
+}
+
+
+
+// ----------------------------
+// SVG background images with PNG and retina fallback
+$image-path: '../img' !default;
+$fallback-extension: 'png' !default;
+$retina-suffix: '@2x';
+@mixin background-svg-img($name, $size:false){
+    background-image: url(#{$image-path}/#{$name}.svg);
+    @if($size){
+        background-size: $size;
+    }
+    .no-svg &{
+        background-image: url(#{$image-path}/#{$name}.#{$fallback-extension});
+
+        @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+          background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension});
+        }
+    }
+}
+// Usage:
+// body {
+//   @include background-svg-img('pattern');
+// }
+
+
+// ----------------------------
+// Opacity
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+
+// ----------------------------
+// Clearfix
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+// Usage:
+// .container-with-floated-children {
+//   @extend %clearfix;
+// }
+
+
+// ----------------------------
+// Visually hide an element
+
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+// Usage:
+// .visually-hidden {
+//   @extend %visuallyhidden;
+// }
